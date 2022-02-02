@@ -20,7 +20,7 @@ Applications that are designed to recognize the presence of persistent memory in
 Platform vendors such as Intel, AMD, ARM, and others will decide how persistent memory should be implemented at the lowest hardware levels. We try to provide a vendor-agnostic perspective and only occasionally call out platform-specific details.
 
 ### Cache hierarchy
-![![Screen Shot 2022-01-28 at 12.08.23 AM.png](Screen Shot 2022-01-28 at 12.08.23 AM.png)]
+![![Screen Shot 2022-01-28 at 12.08.23 AM.png](Screen-Shot-20220128208.png)]
 * The L1 (Level 1) cache is the fastest memory in a computer system. In terms of access priority, the L1 cache has the data the CPU is most likely to need while completing a specific task. The L1 cache is also usually split two ways, into the instruction cache (L1 I) and the data cache (L1 D). The instruction cache deals with the information about the operation that the CPU has to perform, while the data cache holds the data on which the operation is to be performed.
 * The L2 (Level 2) cache has a larger capacity than the L1 cache, but it is slower. L2 cache holds data that is likely to be accessed by the CPU next. In most modern CPUs, the L1 and L2 caches are present on the CPU cores themselves, with each core getting dedicated caches.
 * The L3 (Level 3) cache is the largest cache memory, but it is also the slowest of the three. It is also a commonly shared resource among all the cores on the CPU and may be internally partitioned to allow each core to have dedicated L3 resources.
@@ -29,7 +29,7 @@ Platform vendors such as Intel, AMD, ARM, and others will decide how persistent 
 ### Power-fail protected domains
 System platform hardware supports the concept of a persistence domain, also called power-fail protected domains. Depending on the platform, a persistence domain may include the persistent memory controller and write queues, memory controller write queues, and CPU caches.
 Once data has reached the persistence domain, it may be recoverable during a process that results from a system restart.
-![Screen Shot 2022-01-28 at 12.12.50 AM.png](Screen Shot 2022-01-28 at 12.12.50 AM.png)
+![Screen Shot 2022-01-28 at 12.12.50 AM.png](Screen-Shot-20220128124.png)
 * Asynchronous DRAM Refresh (ADR) is a feature supported on Intel products which flushes the write-protected data buffers and places the DRAM in self-refresh. This process is critical during a power loss event or system crash to ensure the data is in a safe and consistent state on persistent memory. By default, ADR does not flush the processor caches. A platform that supports ADR only includes persistent memory and the memory controller’s write pending queues within the persistence domain.
 * Enhanced Asynchronous DRAM Refresh (eADR) requires that a non-maskable interrupt (NMI) routine be called to flush the CPU caches before the ADR event can begin. Applications running on an eADR platform do not need to perform flush operations because the hardware should flush the data automatically, but they are still required
   to perform an SFENCE operation to maintain write order correctness. Stores should be considered persistent only when they are globally visible, which the SFENCE guarantees.
@@ -53,7 +53,7 @@ the "-o dax" option. On Microsoft Windows, NTFS enables DAX when the volume
 is created and formatted using the DAX option. If the file system is not DAX-enabled, applications should fall back to the legacy approach of using msync(), fsync(), or FlushFileBuffers().
 
 If the file system is DAX-enabled, the next check is to determine whether the platform supports ADR or eADR by verifying whether or not the CPU caches are considered persistent. On an eADR platform where CPU caches are considered persistent, no further action is required. Any data written will be considered persistent, and thus there is no requirement to perform any flushes, which is a significant performance optimization. On an ADR platform, the next sequence of events identifies the most optimal flush operation based on Intel machine instructions previously described.
-![Screen Shot 2022-01-28 at 10.07.48 AM.png](Screen Shot 2022-01-28 at 10.07.48 AM.png)
+![Screen Shot 2022-01-28 at 10.07.48 AM.png](Screen-Shot-202201281007.png)
 
 ### Application startup and recovery
 In addition to detecting platform features, applications should verify whether the platform was previously stopped and restarted gracefully or ungracefully. Figure 2-6 shows the checks performed by the Persistent Memory Development Kit.

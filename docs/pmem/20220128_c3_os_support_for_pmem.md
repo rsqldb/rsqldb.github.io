@@ -50,7 +50,7 @@ Since no kernel I/Ooperations are required, and because the full file is mapped 
 ![Screen Shot 2022-01-28 at 10.59.41 AM.png](Screen Shot 2022-01-28 at 10.59.41 AM.png)
 
 C example
-![Screen Shot 2022-01-28 at 11.07.11 AM.png](Screen Shot 2022-01-28 at 11.07.11 AM.png)
-![Screen Shot 2022-01-28 at 12.00.45 AM.png](Screen Shot 2022-01-28 at 12.00.45 AM.png)
+![Screen Shot 2022-01-28 at 11.07.11 AM.png](Screen-Shot-2022012811.png)
+![Screen Shot 2022-01-28 at 12.00.45 AM.png](Screen-Shot-2022012812.png)
 
 ![Screen Shot 2022-01-28 at 11.06.14 AM.png](Screen Shot 2022-01-28 at 11.06.14 AM.png)
